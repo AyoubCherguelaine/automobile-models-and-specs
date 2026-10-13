@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "automobile-scraper"
+version = "1.0.0"
+description = "Resumable AutoEvolution brands, automobiles and engine specifications scraper"
+requires-python = ">=3.11"
+dependencies = [
+  "beautifulsoup4>=4.13,<5", "lxml>=5.3,<7", "httpx>=0.28,<1",
+  "playwright>=1.51,<2", "pydantic-settings>=2.8,<3",
+  "sqlalchemy>=2.0.39,<3", "typer>=0.15,<1", "ijson>=3.3,<4", "filelock>=3.17,<4",
+]
+
+[project.optional-dependencies]
+postgres = ["psycopg[binary]>=3.2,<4"]
+mysql = ["pymysql>=1.1,<2"]
+dev = ["pytest>=8.3,<10", "pytest-asyncio>=0.25,<2", "ruff>=0.11,<1"]
+
+[project.scripts]
+automobile-scraper = "automobile_scraper.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/automobile_scraper"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

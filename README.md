@@ -1,7 +1,19 @@
 # Automobile Manufacturers, Models, And Specs
 A database which includes automobile manufacturers, models and engine options with specs.
 
-## How to install and use Scrapper?
+## Python scraper
+
+A Python implementation is available in [`scrapper_py`](scrapper_py/README.md), with resumable scraping, database storage, JSON archive import, and JSON/CSV/XML/SQL exports.
+
+```bash
+cd scrapper_py
+uv sync
+cp .env.example .env
+uv run playwright install chromium
+uv run automobile-scraper scrape --limit 2
+```
+
+## How to install and use the original PHP Scrapper?
 
 1. `git clone https://github.com/ilyasozkurt/automobile-models-and-specs && cd automobile-models-and-specs/scrapper`
 1. `composer install`
